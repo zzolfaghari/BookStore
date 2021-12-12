@@ -2,14 +2,17 @@ version: '3.8'
 services:
   web:
     build: .
-    command: python /app/manage.py runserver 0.0.0.0:8000
+    command: python /app/manage.py runserver 0.0.0.0:8100
     ports:
-    - 8000:8000
+    - 8100:8100
     depends_on:
     - db
   db:
     image: postgres:13
     environment:
     - "POSTGRES_HOST_AUTH_METHOD=trust"
+    ports:
+    - 5432:5432
+
 volumes:
   postgres-data:
