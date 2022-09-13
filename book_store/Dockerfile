@@ -1,12 +1,13 @@
 # Pull base image
-FROM python:3.8
+FROM python:3.10.4-slim-bullseye
 # Set environment variables
+ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 # Set work directory
-WORKDIR /app
+WORKDIR /code
 # Install dependencies
-COPY requirements.txt /app/.
-RUN pip install -r /app/requirements.txt
+COPY ./requirements.txt .
+RUN pip install -r requirements.txt
 # Copy project
-COPY . /app/
+COPY . .
